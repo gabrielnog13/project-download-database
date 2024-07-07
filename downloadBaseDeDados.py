@@ -32,7 +32,7 @@ download_link = driver.find_element(By.XPATH, '/html/body/pre/a[7]') #aqui é pa
 download_link.click()
 
 # Esperar o download completar (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
-time.sleep(30)
+time.sleep(2200)
 
 # Fechar o navegador
 driver.quit()
@@ -55,4 +55,4 @@ else:
     print("Arquivo .zip não encontrado!")
 
 # Limpar o diretório de download (opcional)
-os.remove(zip_path)
+os.remove(zip_path)     
