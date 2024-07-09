@@ -9,8 +9,8 @@ import zipfile
 import shutil
 
 # Configurações
-download_dir = "/path/to/download"  # Diretório para onde o arquivo .zip será baixado
-final_dir = "/path/to/final/destination"  # Diretório para onde os arquivos descompactados serão movidos
+download_dir = "/path/to/downloads"  # Diretório para onde o arquivo .zip será baixado
+final_dir = "/path/to/desktop/downloadDeBases"  # Diretório para onde os arquivos descompactados serão movidos
 zip_file_name = "siconv.zip"  # Nome do arquivo .zip a ser baixado
 
 # Configurar o Selenium para usar o Chrome
@@ -32,7 +32,7 @@ download_link = driver.find_element(By.XPATH, '/html/body/pre/a[7]') #aqui é pa
 download_link.click()
 
 # Esperar o download completar (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
-time.sleep(30)
+time.sleep(1000)
 
 # Fechar o navegador
 driver.quit()
@@ -54,5 +54,5 @@ if os.path.exists(zip_path):
 else:
     print("Arquivo .zip não encontrado!")
 
-# Limpar o diretório de download (opcional)
+# Limpar o diretório de download (é opcional mas é recomendável que se use)
 os.remove(zip_path)
