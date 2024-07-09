@@ -54,5 +54,5 @@ if os.path.exists(zip_path):
 else:
     print("Arquivo .zip não encontrado!")
 
-# Limpar o diretório de download (é opcional mas é recomendável que se use)
+# Limpar o diretório de download (opcional mas é recomendável que seja feito)
 os.remove(zip_path)
