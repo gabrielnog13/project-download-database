@@ -50,7 +50,7 @@ if os.path.exists(zip_path):
     for file_name in os.listdir(download_dir):
         file_path = os.path.join(download_dir, file_name)
         if os.path.isfile(file_path):
-            shutil.move(file_path, final_dir)
+            shutil.move(zip_file_name, final_dir)
 else:
     print("Arquivo .zip não encontrado!")
 
