@@ -8,47 +8,47 @@ from webdriver_manager.chrome import ChromeDriverManager
 import zipfile
 import shutil
 
-# Configurações
-# Diretório para onde o arquivo .zip será baixado
+# configurações
+# diretório para onde o arquivo .zip será baixado
 download_dir = os.path.expanduser("~/Downloads")
 
-# Diretório para onde os arquivos descompactados serão movidos
+# diretório para onde os arquivos descompactados serão movidos
 final_dir = os.path.expanduser("~/Desktop/downloadDeBases")
 
-# Nome do arquivo .zip a ser baixado
+# nome do arquivo .zip a ser baixado
 zip_file_name = "siconv.zip"
 
-# Criar o diretório final se ele não existir
+# criar o diretório final se ele não existir
 os.makedirs(final_dir, exist_ok=True)
 
-# Configurar o Selenium para usar o Chrome
+# configurar o Selenium para usar o Chrome
 options = webdriver.ChromeOptions()
 prefs = {"download.default_directory": download_dir}
 options.add_experimental_option("prefs", prefs)
 
-# Inicializar o WebDriver
+# inicializar o WebDriver
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) #inicializa o navegador google chrome
 
-# Navegar para a página com o link do arquivo .zip
+# navegar para a página com o link do arquivo .zip
 driver.get("https://repositorio.dados.gov.br/seges/detru/") #aqui é passado o link do site onde tem o arquivo que você quer baixar
 
-# Esperar a página carregar completamente (pode ser necessário ajustar o tempo ou usar WebDriverWait)
+# esperar a página carregar completamente (pode ser necessário ajustar o tempo ou usar WebDriverWait)
 time.sleep(5)
 
-# Encontrar e clicar no link de download (ajuste o seletor conforme necessário)
+# encontrar e clicar no link de download (ajuste o seletor conforme necessário)
 download_link = driver.find_element(By.XPATH, '/html/body/pre/a[7]') #aqui é passado o xpath do aquivo que será baixado
 download_link.click()
 
-# Esperar o download completar (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
+# esperar o download completar (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
 time.sleep(1000)
 
-# Fechar o navegador
+# fechar o navegador
 driver.quit()
 
-# Caminho completo do arquivo .zip baixado
+# caminho completo do arquivo .zip baixado
 zip_path = os.path.join(download_dir, zip_file_name)
 
-# Verificar se o arquivo .zip foi baixado
+# verificar se o arquivo .zip foi baixado
 if os.path.exists(zip_path):
     # Descompactar o arquivo .zip
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -62,5 +62,5 @@ if os.path.exists(zip_path):
 else:
     print("Arquivo .zip não encontrado!")
 
-# Limpar o diretório de download (opcional mas é recomendável que seja feito)
+# limpar o diretório de download (opcional mas é recomendável que seja feito)
 os.remove(zip_path)
