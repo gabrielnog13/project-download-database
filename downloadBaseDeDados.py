@@ -9,9 +9,17 @@ import zipfile
 import shutil
 
 # Configurações
-download_dir = "/path/to/downloads"  # Diretório para onde o arquivo .zip será baixado
-final_dir = "/path/to/desktop/downloadDeBases"  # Diretório para onde os arquivos descompactados serão movidos
-zip_file_name = "siconv.zip"  # Nome do arquivo .zip a ser baixado
+# Diretório para onde o arquivo .zip será baixado
+download_dir = os.path.expanduser("~/Downloads")
+
+# Diretório para onde os arquivos descompactados serão movidos
+final_dir = os.path.expanduser("~/Desktop/downloadDeBases")
+
+# Nome do arquivo .zip a ser baixado
+zip_file_name = "siconv.zip"
+
+# Criar o diretório final se ele não existir
+os.makedirs(final_dir, exist_ok=True)
 
 # Configurar o Selenium para usar o Chrome
 options = webdriver.ChromeOptions()
