@@ -27,34 +27,34 @@ prefs = {"download.default_directory": download_dir}
 options.add_experimental_option("prefs", prefs)
 
 # inicializar o WebDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) #inicializa o navegador google chrome
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) # inicialização do navegador google chrome
 
 # navegar para a página com o link do arquivo .zip
-driver.get("https://repositorio.dados.gov.br/seges/detru/") #aqui é passado o link do site onde tem o arquivo que você quer baixar
+driver.get("https://repositorio.dados.gov.br/seges/detru/") # o link do site onde tem o arquivo que deseja baixar
 
-# esperar a página carregar completamente (pode ser necessário ajustar o tempo ou usar WebDriverWait)
+# tempo necessário para espe (pode ser necessário ajustar o tempo ou usar WebDriverWait)
 time.sleep(5)
 
 # encontrar e clicar no link de download (ajuste o seletor conforme necessário)
-download_link = driver.find_element(By.XPATH, '/html/body/pre/a[7]') #aqui é passado o xpath do aquivo que será baixado
+download_link = driver.find_element(By.XPATH, '/html/body/pre/a[7]') # aqui é passado o xpath do aquivo que será baixado
 download_link.click()
 
-# esperar o download completar (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
+# tempo de espera de conclusão do download (pode ser necessário ajustar o tempo ou implementar uma verificação de arquivo)
 time.sleep(1000)
 
 # fechar o navegador
 driver.quit()
 
-# caminho completo do arquivo .zip baixado
+# caminho do arquivo .zip que foi baixado
 zip_path = os.path.join(download_dir, zip_file_name)
 
-# verificar se o arquivo .zip foi baixado
+# verificação se o arquivo .zip foi baixado e se foi no diretório certo
 if os.path.exists(zip_path):
-    # Descompactar o arquivo .zip
+    # descompactar o arquivo .zip
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(download_dir)
 
-    # Mover os arquivos descompactados para o diretório final
+    # mover os arquivos que foram descompactados para o diretório final
     for file_name in os.listdir(download_dir):
         file_path = os.path.join(download_dir, file_name)
         if os.path.isfile(file_path):
@@ -62,5 +62,5 @@ if os.path.exists(zip_path):
 else:
     print("Arquivo .zip não encontrado!")
 
-# limpar o diretório de download (opcional mas é recomendável que seja feito)
-os.remove(zip_path)
+# limpar o diretório de download
+    os.remove(zip_path)
